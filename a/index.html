@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>盯节点 · 验收时少扯皮</title>
+<style>
+:root{--ink:#1c2430;--muted:#5c6778;--line:#d5dbe6;--bg:#f4f6f8;--accent:#1d4e89;--danger:#8c2f1b;--soft:#e7eef6}
+*{box-sizing:border-box}body{margin:0;color:var(--ink);line-height:1.6;font-family:"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg)}
+a{color:var(--accent)}.wrap{max-width:860px;margin:0 auto;padding:18px 16px 56px}
+.top{position:sticky;top:0;background:rgba(244,246,248,.94);border-bottom:1px solid var(--line)}
+.top-in{max-width:860px;margin:0 auto;padding:10px 16px;display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.brand{font-weight:800}.nav a{text-decoration:none;color:var(--ink);font-size:13px;margin-right:8px}
+h1{margin:8px 0;font-size:clamp(26px,5vw,40px);line-height:1.2}
+.lead{color:var(--muted)}.kicker{display:inline-block;font-size:12px;font-weight:700;color:var(--accent);background:var(--soft);border-radius:999px;padding:4px 10px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}.chip{font-size:12px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:4px 10px;color:var(--muted)}
+.btn{border:0;cursor:pointer;font:inherit;font-weight:700;text-decoration:none;display:inline-flex;padding:12px 16px;border-radius:12px}
+.btn-p{background:var(--accent);color:#fff}.btn-g{background:#fff;color:var(--ink);border:1px solid var(--line)}
+.btn-block{width:100%;justify-content:center}
+.redline{margin:16px 0;padding:14px 16px;border-radius:14px;background:#fff4ef;border-left:6px solid var(--danger)}
+.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px;margin-top:14px}
+.q{margin:0 0 10px;padding:10px 12px;background:#f7f9fc;border-left:3px solid var(--accent)}
+.q cite{display:block;margin-top:4px;font-style:normal;font-size:12px;color:var(--muted)}
+label.ck{display:flex;gap:8px;padding:8px 0}label.ck input{width:18px;height:18px;margin-top:4px}
+.field{margin:0 0 10px}.field span{display:block;font-size:13px;font-weight:700}
+.field input,.field select,.field textarea{width:100%;padding:10px;border:1px solid var(--line);border-radius:10px;font:inherit}
+.row2{display:grid;gap:10px}@media(min-width:560px){.row2{grid-template-columns:1fr 1fr}}
+.msg{font-weight:700;min-height:1.2em}.ok{color:#1d4e89}.err{color:var(--danger)}
+.item{border:1px dashed var(--line);border-radius:10px;padding:8px;margin-bottom:8px;font-size:13px}
+footer{margin-top:18px;color:var(--muted);font-size:12px}
+</style></head><body>
+<header class="top"><div class="top-in"><div class="brand">盯节点</div>
+<nav class="nav"><a href="#obs">清单</a><a href="#log">记录</a><a href="#book">预约</a><a href="#hist">本机</a></nav></div></header>
+<main class="wrap">
+<p class="kicker">沈阳农业大学 · 土木工程 · 课程 MVP</p>
+<h1>验收时少扯皮</h1>
+<p class="lead">给村级小型修缮、农户自建房的户主：一张施工节点提醒，加一张验收问题清单（部位、问题、是否整改、复查）。先知道这周该盯哪道工序，验收时能对上。</p>
+<div class="chips"><span class="chip">水利与土木工程学院 · 土木工程</span><span class="chip">村级小修缮·节点提醒与验收清单</span><span class="chip">不接总包 · 不出图 · 不卖BIM</span></div>
+<p><a class="btn btn-p" href="#obs">开始填写</a></p>
+<section class="redline"><h2>红线：本页不包工、不出图、不卖软件</h2><ul><li>不承接工程总包，不代替工长施工。</li><li>不做设计出图，不把规范条文整本甩给你。</li><li>不卖 BIM、不推智慧工地。清单只帮你把“做了没有、问题闭没闭合”记清楚。</li></ul></section>
+<section class="card"><h2>第3周访谈原话</h2><blockquote class="q">「防水那次工长说做了，验收才发现角没做好，又拆。」<cite>FT-01 · 谈漏项</cite></blockquote>
+<blockquote class="q">「群里催了三遍还是忘，聊天记录翻半天。」<cite>FT-01 · 谈口头催</cite></blockquote>
+<blockquote class="q">「你要是一张表提醒我哪天该盯啥，我可以试试，别一上来让我买软件。」<cite>FT-01 · 谈付费</cite></blockquote>
+<blockquote class="q">「别跟我说BIM，听不懂。」<cite>FT-01 · 谈边界</cite></blockquote>
+<p style="font-size:12px;color:var(--muted)">以上为课程访谈摘录。本周未做满10名上线后回访，不把点赞写成用户数。</p></section>
+<section class="card"><h2>三步</h2><ol><li>勾今天该盯的节点：防水、浇筑前、交接。</li><li>有问题就记：部位、问题、是否整改、谁复查。</li><li>把本机记录给户主和工长对一下，不在这里签施工合同。</li></ol></section>
+<section class="card" id="obs"><h2>今日清单</h2>
+<form id="obsForm"><label class="ck"><input type="checkbox" name="node_wp"/> 防水节点：今天看过阴阳角/收口，并记下做没做</label>
+<label class="ck"><input type="checkbox" name="node_jz"/> 浇筑前：钢筋/模板/清理至少看过一项</label>
+<label class="ck"><input type="checkbox" name="node_jj"/> 交接：下一班知道上一班做到哪</label>
+<label class="ck"><input type="checkbox" name="issue"/> 若有问题，已准备写到验收清单（部位+是否整改）</label>
+<div class="row2"><label class="field"><span>谁在填</span><input name="who" placeholder="户主 / 帮忙盯工的亲戚"/></label>
+<label class="field"><span>部位</span><input name="pen" placeholder="例如：卫生间防水 / 圈梁"/></label></div>
+<button class="btn btn-p btn-block" type="submit">保存到本机</button><p class="msg" id="obsMsg"></p></form></section>
+<section class="card" id="log"><h2>补一笔记录</h2>
+<form id="logForm"><div class="row2">
+<label class="field"><span>时间</span><input type="datetime-local" name="when" required/></label>
+<label class="field"><span>类别</span><select name="kind" required><option value="">请选择</option><option>防水</option>
+<option>浇筑</option>
+<option>砌筑</option>
+<option>装修交接</option>
+<option>其他</option></select></label>
+</div><label class="field"><span>备注</span><textarea name="note"></textarea></label>
+<button class="btn btn-p btn-block" type="submit">保存记录</button><p class="msg" id="logMsg"></p></form></section>
+<section class="card" id="book"><h2>预约两周试填</h2><p>课程作业联系人待填姓名电话。预约只存在你的浏览器，学生本人再电话说明两周试填，不推销软件。</p>
+<form id="bookForm"><div class="row2">
+<label class="field"><span>称呼</span><input name="name" required/></label>
+<label class="field"><span>手机</span><input name="phone" required inputmode="numeric" placeholder="11位"/></label>
+</div><button class="btn btn-p btn-block" type="submit">预约（仅存本机）</button><p class="msg" id="bookMsg"></p></form></section>
+<section class="card" id="hist"><h2>本机最近记录</h2><div id="list"></div>
+<button class="btn btn-g" type="button" id="clear">清空本机记录</button></section>
+<footer><p>土木A（姓名学号待填）· 村级小修缮节点提醒 · 课程落地页</p><p>公网：https://hjw-create.github.io/tumu-course-mvp/a/</p><p>数据只存在你的浏览器，不上传服务器。</p></footer>
+</main>
+<script>window.PAGE_KEY='tumuA_mvp_v1';</script>
+<script>
+(function(){
+  var KEY=window.PAGE_KEY;
+  function load(){try{return JSON.parse(localStorage.getItem(KEY)||"[]")}catch(e){return[]}}
+  function save(list){localStorage.setItem(KEY,JSON.stringify(list.slice(0,40)));render()}
+  function stamp(){var d=new Date(),p=function(n){return n<10?"0"+n:""+n};return d.getFullYear()+"-"+p(d.getMonth()+1)+"-"+p(d.getDate())+" "+p(d.getHours())+":"+p(d.getMinutes())}
+  function render(){var list=load(),box=document.getElementById("list");
+    if(!list.length){box.innerHTML="<p>还没有记录。</p>";return}
+    box.innerHTML=list.map(function(r){return "<div class='item'><b>"+r.type+" · "+r.at+"</b>"+r.summary+"</div>"}).join("")}
+  document.getElementById("obsForm").onsubmit=function(e){
+    e.preventDefault();var fd=new FormData(e.target);var boxes=e.target.querySelectorAll("input[type=checkbox]");var n=0;boxes.forEach(function(b){if(b.checked)n++});
+    var msg=document.getElementById("obsMsg");
+    if(n<boxes.length){msg.className="msg err";msg.textContent="请把清单勾完再保存。";return}
+    var list=load();list.unshift({type:"清单",at:stamp(),summary:"填写人："+(fd.get("who")||"未填")+"；部位："+(fd.get("pen")||"未填")});
+    save(list);msg.className="msg ok";msg.textContent="已保存在本机。";
+  };
+  document.getElementById("logForm").onsubmit=function(e){
+    e.preventDefault();var fd=new FormData(e.target);var list=load();
+    list.unshift({type:"记录",at:stamp(),summary:"时间："+fd.get("when")+"；类别："+fd.get("kind")+"；备注："+((fd.get("note")||"无").toString().trim()||"无")});
+    save(list);document.getElementById("logMsg").className="msg ok";document.getElementById("logMsg").textContent="已保存到本机。";
+  };
+  document.getElementById("bookForm").onsubmit=function(e){
+    e.preventDefault();var fd=new FormData(e.target);var phone=(fd.get("phone")||"").toString();var msg=document.getElementById("bookMsg");
+    if(!/^1[3-9]\d{9}$/.test(phone)){msg.className="msg err";msg.textContent="请填写11位手机号。";return}
+    var list=load();list.unshift({type:"预约",at:stamp(),summary:"称呼："+fd.get("name")+"；手机："+phone});
+    save(list);msg.className="msg ok";msg.textContent="预约草稿只在本机。学生会再联系，不推销系统。";e.target.reset();
+  };
+  document.getElementById("clear").onclick=function(){if(!confirm("清空本浏览器记录？"))return;localStorage.removeItem(KEY);render()};
+  render();
+})();
+</script>
+</body></html>
